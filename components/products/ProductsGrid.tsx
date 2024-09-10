@@ -3,6 +3,7 @@ import { Card, CardContent } from '../ui/card'
 import Image from 'next/image'
 import { formatCurrency } from '@/utils/format'
 import FavoriteToggleButton from './FavoriteToggleButton'
+import { Product } from '@prisma/client'
 
 
 function ProductsGrid({ products }: { products: Product[] }) {
