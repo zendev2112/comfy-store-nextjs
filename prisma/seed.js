@@ -1,6 +1,9 @@
 const { PrismaClient } = require('@prisma/client')
 const products = require('./products.json')
-const prisma = new PrismaClient()
+const prisma = new PrismaClient({
+  queryCache: false,
+  usePreparedStatements: false,
+})
 
 async function main() {
   for (const product of products) {

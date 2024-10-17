@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { LuUser2 } from 'react-icons/lu'
 import { currentUser } from '@clerk/nextjs/server'
 
@@ -8,7 +9,7 @@ async function UserIcon() {
 
   if (profileImage) {
     return (
-      <img src={profileImage} className="w-6 h-6 rounded-full object-cover" />
+      <img src={profileImage} className="w-6 h-6 rounded-full object-cover" alt=''/>
     )
   }
 

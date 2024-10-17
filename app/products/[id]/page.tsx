@@ -5,6 +5,9 @@ import { formatCurrency } from '@/utils/format'
 import FavoriteToggleButton from '@/components/products/FavoriteToggleButton'
 import AddToCart from '@/components/single-product/AddToCart'
 import ProductRating from '@/components/single-product/ProductRating'
+import ShareButton from '@/components/single-product/ShareButton';
+import SubmitReview from '@/components/reviews/SubmitReview'
+import ProductReviews from '@/components/reviews/ProductReviews'
 
 async function SingleProductPage({ params }: { params: { id: string } }) {
   const product = await fetchSingleProduct(params.id)
@@ -27,17 +30,24 @@ async function SingleProductPage({ params }: { params: { id: string } }) {
         </div>
         {/* PRODUCT INFO SECOND COL */}
         <div>
-            <div className="flex gap-x-8 items-center">
-                <h1 className="capitalize text-3xl font-bold">{name}</h1>
-                <FavoriteToggleButton productId={params.id}/>
+          <div className="flex gap-x-8 items-center">
+            <h1 className="capitalize text-3xl font-bold">{name}</h1>
+            <div className="flex items-center gap-x-2">
+              <FavoriteToggleButton productId={params.id} />
+              <ShareButton name={product.name} productId={params.id}/>
             </div>
-            <ProductRating productId={params.id}/>
-            <h4 className='text-xl mt-2'>{company}</h4>
-            <p className="mt-3 text-md bg-muted inline-block p-2 rounded">{dollarsAmount}</p>
-            <p className="mt-6 leading-8 text-muted-foreground">{description }</p>
-            <AddToCart productId={params.id}/>
+          </div>
+          <ProductRating productId={params.id} />
+          <h4 className="text-xl mt-2">{company}</h4>
+          <p className="mt-3 text-md bg-muted inline-block p-2 rounded">
+            {dollarsAmount}
+          </p>
+          <p className="mt-6 leading-8 text-muted-foreground">{description}</p>
+          <AddToCart productId={params.id} />
         </div>
       </div>
+      <ProductReviews productId={params.id}/>
+      <SubmitReview productId={params.id}/>
     </section>
   )
 }
